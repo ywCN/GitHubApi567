@@ -14,15 +14,13 @@ def get_repo_info(user_name='ywang567'):
     except (TypeError, KeyError, IndexError):
         return 'unable to fetch repos from user'
 
-    try:
-        for repo in repos:
-            repo_name = repo['name']
-            repo_url = 'https://api.github.com/repos/{}/{}/commits'.format(user_name, repo_name)
-            repo_info = requests.get(repo_url)
-            repo_info_json = json.loads(repo_info.text)
-            output.append('Repo: {} Number of commits: {}'.format(repo_name, len(repo_info_json)))
-    except (TypeError, KeyError, IndexError):
-        return 'unable to fetch commits from repo'
+    for repo in repos:
+        repo_name = repo['name']
+        repo_url = 'https://api.github.com/repos/{}/{}/commits'.format(user_name, repo_name)
+        repo_info = requests.get(repo_url)
+        repo_info_json = json.loads(repo_info.text)
+        output.append('Repo: {} Number of commits: {}'.format(repo_name, len(repo_info_json)))
+
     return output
 
 
