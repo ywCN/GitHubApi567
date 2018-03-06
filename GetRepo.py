@@ -18,15 +18,15 @@ def get_commit_info(repos):
 
     return commit_info
 
-def get_user_info():
+def get_user_info(commit_info):
     user_info = []
     user_info.append('User: ywang567')
-
-    commit_info = get_commit_info(get_repo_info())
 
     return user_info + commit_info
 
 
 if __name__ == '__main__':
-    for entry in get_user_info():
+    repo_info = get_repo_info()
+    commit_info = get_commit_info(repo_info);
+    for entry in get_user_info(commit_info):
         print(entry)
